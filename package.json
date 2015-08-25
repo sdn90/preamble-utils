@@ -7,9 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel src --out-dir lib"
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir lib",
+    "test": "mocha --compilers js:babel/register"
   },
   "author": "Steven Nguyen",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "expect": "^1.9.0",
+    "mocha": "^2.2.5"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
 }
