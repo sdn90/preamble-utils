@@ -41,7 +41,7 @@ let product = {
 describe('Unique options', () => {
   it('should return an array of values of each option', () => {
     expect(uniqueOptions(product))
-    .toBe([{ name: 'Color',
+    .toEqual([{ name: 'Color',
              values: [ 'Black', 'Dark Pink', 'Blue', 'Red Plum' ]
            },
           { name: 'Size', values: [ 'Large' ] }]);
