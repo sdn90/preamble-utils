@@ -11,7 +11,7 @@ export function uniqueOptions(product) {
     let values = _.pluck(product.variants, 'option' + (index + 1));
     return {
       name: option,
-      values
+      values: _.compact(values)
     };
   });
 }
