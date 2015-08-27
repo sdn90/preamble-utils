@@ -1,5 +1,7 @@
 import expect from 'expect';
-import { uniqueOptions, imageUrl } from '../src/product';
+import uniqueOptions from '../src/product/uniqueOptions';
+import imageUrl from '../src/product/imageUrl';
+import lowestPrice from '../src/product/lowestPrice';
 
 let product = {
   "variants": [{
@@ -25,6 +27,7 @@ let product = {
     "option1": "Blue",
     "option2": null,
     "option3": null,
+    "price": 2300
   }, {
     "id": 1091557373,
     "title": "Red Plum",
@@ -32,7 +35,7 @@ let product = {
     "option1": "Red Plum",
     "option2": null,
     "option3": null,
-    "price": 1799,
+    "price": 3400
   }],
   "images": [ "//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image.jpeg?v=1424572403"],
   "options": ["Color", "Size"],
@@ -40,17 +43,22 @@ let product = {
 
 describe('Unique options', () => {
   it('should return an array of values of each option', () => {
-    expect(uniqueOptions(product))
-    .toEqual([{ name: 'Color',
-             values: [ 'Black', 'Dark Pink', 'Blue', 'Red Plum' ]
-           },
-          { name: 'Size', values: [ 'Large' ] }]);
+    expect(uniqueOptions(product)).toEqual([
+      { name: 'Color', values: ['Black', 'Dark Pink', 'Blue', 'Red Plum']},
+      { name: 'Size', values: ['Large'] }
+    ]);
 });
 });
 
 describe('Image URL', () => {
   it('should append string to filename', () => {
     expect(imageUrl(product.images[0], 'grande'))
-    .toBe('//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image_grande.jpeg?v=1424572403');
+      .toBe('//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image_grande.jpeg?v=1424572403');
+  });
+});
+
+describe('Lowest Price', () => {
+  it('should return the lowest price', () => {
+    expect(lowestPrice(product)).toEqual(1799);
   });
 });
