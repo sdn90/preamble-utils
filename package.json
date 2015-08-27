@@ -7,19 +7,36 @@
     "test": "test"
   },
   "scripts": {
+    "clean": "rimraf lib dist",
     "build": "babel src --out-dir lib",
-    "test": "mocha --compilers js:babel/register"
+    "build:umd": "webpack src/index.js dist/preamble.js && webpack -p src/index.js dist/preamble.min.js",
+    "test": "mocha --compilers js:babel/register",
+    "prepublish": "npm run test && npm run clean && npm run build && npm run build:umd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sdn90/preamblejs"
   },
   "author": "Steven Nguyen",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdn90/preamblejs/issues"
+  },
+  "homepage": "https://github.com/sdn90/premablejs",
   "devDependencies": {
     "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
     "babel-eslint": "^4.0.10",
+    "babel-loader": "^5.3.2",
     "eslint": "^1.2.1",
+    "eslint-config-airbnb": "0.0.8",
     "expect": "^1.9.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "webpack": "^1.12.0"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "es6-promise": "^3.0.2",
+    "lodash": "^3.10.1",
+    "whatwg-fetch": "^0.9.0"
   }
 }
