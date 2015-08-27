@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import compact from 'lodash/array/compact';
+import pluck from 'lodash/collection/pluck';
+import findWhere from 'lodash/collection/findWhere'
 
 /* returns array
  * [
@@ -8,16 +10,16 @@ import _ from 'lodash';
  */
 export function uniqueOptions(product) {
   return product.options.map((option, index) => {
-    let values = _.pluck(product.variants, 'option' + (index + 1));
+    let values = pluck(product.variants, 'option' + (index + 1));
     return {
       name: option,
-      values: _.compact(values)
+      values: compact(values)
     };
   });
 }
 
 export function findVariant(product, options) {
-  return _.findWhere(product.variants, options);
+  return findWhere(product.variants, options);
 }
 
 export function imageUrl(url, size) {
