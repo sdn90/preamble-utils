@@ -17,7 +17,7 @@ let product = {
     "title": "Dark Pink",
     "options": ["Dark Pink"],
     "option1": "Dark Pink",
-    "option2": null,
+    "option2": "Large",
     "option3": null,
     "price": 1799,
   }, {
