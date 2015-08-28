@@ -52,7 +52,7 @@ export function updateCart(id, quantity) {
       'Content-Type': 'application/json'
     },
     credentials: 'include',
-    body: JSON.stringify({ id, quantity });
+    body: JSON.stringify({ id, quantity })
   }).then(res => {
     return res.json();
   });
@@ -62,7 +62,7 @@ export function changeCart(id, quantity) {
   return fetch('/cart/change.js', {
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ id, quantity });
+    body: JSON.stringify({ id, quantity })
   }).then(res => {
     return res.json();
   });
