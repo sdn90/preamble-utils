@@ -2,6 +2,7 @@ import expect from 'expect';
 import uniqueOptions from '../src/product/uniqueOptions';
 import imageUrl from '../src/product/imageUrl';
 import lowestPrice from '../src/product/lowestPrice';
+import findVariant from '../src/product/findVariant';
 
 let product = {
   "variants": [{
@@ -47,7 +48,8 @@ describe('Unique options', () => {
       { name: 'Color', values: ['Black', 'Dark Pink', 'Blue', 'Red Plum']},
       { name: 'Size', values: ['Large'] }
     ]);
-});
+  });
+
 });
 
 describe('Image URL', () => {
@@ -62,3 +64,19 @@ describe('Lowest Price', () => {
     expect(lowestPrice(product)).toEqual(1799);
   });
 });
+
+describe('Find Variant', () => {
+  it('should return a variant', () => {
+    expect(
+      findVariant(product, { option1: 'Black', option2: 'Large' })
+    ).toBe(product.variants[0]);
+  });
+
+  it('should throw an error if the wrong number of options are given', () => {
+    expect(() => {
+      findVariant(product, {
+        option1: 'Black', option2: 'Large', option3: 'Medium'
+      })
+    }).toThrow('Wrong number of options given');
+  });
+})
