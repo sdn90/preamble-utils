@@ -7,6 +7,10 @@
 export function getProduct(handle) {
   return fetch(`/products/${handle}`, {
     method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'include'
   }).then(res => {
     return res.json();
@@ -14,12 +18,14 @@ export function getProduct(handle) {
 }
 
 export function addCart(id, quantity = 1) {
-  let body = JSON.stringify({ id, quantity });
-
   return fetch(`/cart/add.js`, {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'include',
-    body
+    body: JSON.stringify({ id, quantity })
   }).then(res => {
     return res.json();
   })
@@ -28,6 +34,10 @@ export function addCart(id, quantity = 1) {
 export function getCart() {
   return fetch('/cart.js', {
     method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'include'
   }).then(res => {
     return res.json();
@@ -35,24 +45,24 @@ export function getCart() {
 }
 
 export function updateCart(id, quantity) {
-  let body = JSON.stringify({ id, quantity });
-
   return fetch('/cart/update.js', {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     credentials: 'include',
-    body
+    body: JSON.stringify({ id, quantity });
   }).then(res => {
     return res.json();
   });
 }
 
 export function changeCart(id, quantity) {
-  let body = JSON.stringify({ id, quantity });
-
   return fetch('/cart/change.js', {
     method: 'POST',
     credentials: 'include',
-    body
+    body: JSON.stringify({ id, quantity });
   }).then(res => {
     return res.json();
   });
@@ -68,6 +78,5 @@ export function clearCart() {
 }
 
 export function getShipping(obj) {
-  
 }
 
