@@ -1,8 +1,8 @@
 import expect from 'expect';
 import uniqueOptions from '../src/product/uniqueOptions';
 import imageUrl from '../src/product/imageUrl';
-import lowestPrice from '../src/product/lowestPrice';
 import findVariant from '../src/product/findVariant';
+import formatMoney from '../src/product/formatMoney';
 
 let product = {
   "variants": [{
@@ -59,12 +59,6 @@ describe('Image URL', () => {
   });
 });
 
-describe('Lowest Price', () => {
-  it('should return the lowest price', () => {
-    expect(lowestPrice(product)).toEqual(1799);
-  });
-});
-
 describe('Find Variant', () => {
   it('should return a variant', () => {
     expect(
@@ -79,4 +73,10 @@ describe('Find Variant', () => {
       })
     }).toThrow('Wrong number of options given');
   });
+})
+
+describe('Format Money', () => {
+  it('should format money', () => {
+    expect(formatMoney(1399)).toEqual('$13.99')
+  })
 })
