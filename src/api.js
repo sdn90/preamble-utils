@@ -3,7 +3,6 @@
  * Docs for Shopify's Ajax API
  * https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api
  */
-import request from 'superagent';
 
 export function getProduct(handle) {
   return fetch(`/products/${handle}`, {
