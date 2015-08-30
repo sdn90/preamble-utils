@@ -3,13 +3,15 @@
  * Docs for Shopify's Ajax API
  * https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api
  */
+import request from 'superagent';
 
 export function getProduct(handle) {
   return fetch(`/products/${handle}`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json',
+      'Accept': 'text/javascript',
       'Content-Type': 'application/json'
+      'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
   }).then(res => {
@@ -22,13 +24,14 @@ export function addCart(id, quantity = 1) {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
     },
-    credentials: 'include',
-    body: JSON.stringify({ id, quantity })
+    credentials: 'include'
+    body: JSON.stringify({ id, quantity }),
   }).then(res => {
     return res.json();
-  })
+  });
 }
 
 export function getCart() {
@@ -37,6 +40,7 @@ export function getCart() {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
+      'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
   }).then(res => {
@@ -50,6 +54,7 @@ export function updateCart(id, quantity) {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
+      'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include',
     body: JSON.stringify({ id, quantity })
@@ -61,6 +66,11 @@ export function updateCart(id, quantity) {
 export function changeCart(id, quantity) {
   return fetch('/cart/change.js', {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      'X-Requested-With': 'XMLHttpRequest'
+    },
     credentials: 'include',
     body: JSON.stringify({ id, quantity })
   }).then(res => {
@@ -71,6 +81,11 @@ export function changeCart(id, quantity) {
 export function clearCart() {
   return fetch('/cart/clear.js', {
     method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      'X-Requested-With': 'XMLHttpRequest'
+    },
     credentials: 'include'
   }).then(res => {
     return res.json();
