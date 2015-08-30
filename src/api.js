@@ -10,7 +10,7 @@ export function getProduct(handle) {
     method: 'GET',
     headers: {
       'Accept': 'text/javascript',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
@@ -27,8 +27,8 @@ export function addCart(id, quantity = 1) {
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
-    credentials: 'include'
-    body: JSON.stringify({ id, quantity }),
+    credentials: 'include',
+    body: JSON.stringify({ id, quantity })
   }).then(res => {
     return res.json();
   });
@@ -39,7 +39,7 @@ export function getCart() {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
@@ -53,7 +53,7 @@ export function updateCart(id, quantity) {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include',
@@ -68,7 +68,7 @@ export function changeCart(id, quantity) {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include',
@@ -83,7 +83,7 @@ export function clearCart() {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
