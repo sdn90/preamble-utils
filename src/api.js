@@ -13,8 +13,6 @@ export function getProduct(handle) {
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
-  }).then(res => {
-    return res.json();
   });
 }
 
@@ -28,8 +26,6 @@ export function addCart(id, quantity = 1) {
     },
     credentials: 'include',
     body: JSON.stringify({ id, quantity })
-  }).then(res => {
-    return res.json();
   });
 }
 
@@ -42,9 +38,7 @@ export function getCart() {
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
-  }).then(res => {
-    return res.json();
-  })
+  });
 }
 
 export function updateCart(id, quantity) {
@@ -57,8 +51,6 @@ export function updateCart(id, quantity) {
     },
     credentials: 'include',
     body: JSON.stringify({ id, quantity })
-  }).then(res => {
-    return res.json();
   });
 }
 
@@ -72,8 +64,6 @@ export function changeCart(id, quantity) {
     },
     credentials: 'include',
     body: JSON.stringify({ id, quantity })
-  }).then(res => {
-    return res.json();
   });
 }
 
@@ -86,8 +76,6 @@ export function clearCart() {
       'X-Requested-With': 'XMLHttpRequest'
     },
     credentials: 'include'
-  }).then(res => {
-    return res.json();
   });
 }
 
