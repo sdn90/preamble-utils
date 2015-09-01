@@ -4,78 +4,60 @@
  * https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api
  */
 
+const headers = {
+  'Accept': 'text/javascript',
+  'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest'
+}
+
 export function getProduct(handle) {
   return fetch(`/products/${handle}`, {
     method: 'GET',
-    headers: {
-      'Accept': 'text/javascript',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
-    credentials: 'include'
+    credentials: 'include',
+    headers
   });
 }
 
 export function addCart(id, quantity = 1) {
   return fetch(`/cart/add.js`, {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
     credentials: 'include',
-    body: JSON.stringify({ id, quantity })
+    body: JSON.stringify({ id, quantity }),
+    headers
   });
 }
 
 export function getCart() {
   return fetch('/cart.js', {
     method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
-    credentials: 'include'
+    credentials: 'include',
+    headers
   });
 }
 
 export function updateCart(id, quantity) {
   return fetch('/cart/update.js', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
     credentials: 'include',
-    body: JSON.stringify({ id, quantity })
+    body: JSON.stringify({ id, quantity }),
+    headers
   });
 }
 
 export function changeCart(id, quantity) {
   return fetch('/cart/change.js', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
     credentials: 'include',
-    body: JSON.stringify({ id, quantity })
+    body: JSON.stringify({ id, quantity }),
+    headers
   });
 }
 
 export function clearCart() {
   return fetch('/cart/clear.js', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    },
-    credentials: 'include'
+    credentials: 'include',
+    headers
   });
 }
 
