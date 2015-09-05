@@ -18,11 +18,11 @@ export function getProduct(handle) {
   });
 }
 
-export function addCart(id, quantity = 1) {
+export function addCart(options) {
   return fetch(`/cart/add.js`, {
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ id, quantity }),
+    body: JSON.stringify(options),
     headers
   });
 }
@@ -35,20 +35,20 @@ export function getCart() {
   });
 }
 
-export function updateCart(id, quantity) {
+export function updateCart(options) {
   return fetch('/cart/update.js', {
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ id, quantity }),
+    body: JSON.stringify(options),
     headers
   });
 }
 
-export function changeCart(id, quantity) {
+export function changeCart(options) {
   return fetch('/cart/change.js', {
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ id, quantity }),
+    body: JSON.stringify(options),
     headers
   });
 }
@@ -61,6 +61,15 @@ export function clearCart() {
   });
 }
 
-export function getShipping(obj) {
+export function getShipping(options) {
+  let url = '/cart/shipping_rates.json?' +
+            + 'shipping_address[zip]=' + options.zip
+            + '&shipping_address[country]=' + options.country
+            + '&shipping_address[province]=' + options.state
+  return fetch(url, {
+    method: 'GET',
+    credentials: 'include',
+    headers
+  });
 }
 
