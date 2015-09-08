@@ -5,7 +5,5 @@ export default function findVariant(product, options) {
 
   if (product.options.length === optionsLength) {
     return findWhere(product.variants, options);
-  } else {
-    throw new Error('Wrong number of options given');
   }
 }
