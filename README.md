@@ -12,7 +12,18 @@ Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but i
 ## Usage
 
 #### findVariant(product, options)
-Returns a variant with the given options
+Find a product variant with the given options.
+
+If the number of options given is not equal to the number there are, nothing is returned.
+
+##### Arguments
+1. `product` *(Object)*: Object returned from `{{ product | json }}`.
+2. `options` *(Object)*: The options of the variant you want to find. Keys should be named `option1`, `option2`, and `option3`.
+
+##### Returns
+*(Object)*: The variant object
+
+##### Example
 
 ```javascript
 import { findVariant } from 'preamble-utils';
@@ -28,23 +39,38 @@ let product = {
 	...
 }
 
-let options = { option1: 'Medium', option2: 'Red' };
 
-findVariant(product, options);
+findVariant(product, { option1: 'Medium', option2: 'Red'});
 // → { id: 2, option1: 'Medium', option2: 'Red' } 
 ```
 
 #### formatMoney(money)
+Adds a decimal to money.
+
+##### Arguments
+1. `money` *(String)*
+
+##### Returns
+*(String)*
+
 ```javascript
 import { formatMoney } from 'preamble-utils';
 
-let money = '1499';
-
-formatMoney(money);
+formatMoney('1499');
 // → '$14.99'
 ```
 
-#### imageSize(url)
+#### imageSize(url, size)
+Gets the specified image size.
+
+##### Arguments
+1. `url` *(String)*: The master/original image URL
+2. `size` *(String)*: The desired size
+
+##### Returns
+*(String)*: URL of specified image size
+
+##### Example
 ```javascript
 import { imageSize } from 'preamble-utils';
 
@@ -58,9 +84,30 @@ imageSize(image, 'grande');
 ```
 
 #### uniqueOptions(product)
+
+##### Arguments
+1. `product` *(Object)*: Object returned from `{{ product | json }}`
+
+##### Returns
+*(Array)*: A collection of each option's unique values.
+
+```javascript
+[{ 
+	name: 'Size',
+	values: ['Small', 'Large']
+},
+{ 
+	name: 'Color',
+	values: ['Green', 'Black']
+}]
+```
+
+##### Example
+
 ```javascript
 import { uniqueOptions } from 'preamble-utils';
 
+// product returned from {{ product | json }}
 let product = {
 	...
 	options: ['Size', 'Color'],
@@ -69,10 +116,10 @@ let product = {
 		{ option1: 'Small', option2: 'Red' },
 		{ option1: 'Small', option3: 'Green' }
 	]
-}
+	...
+};
 
 uniqueOptions(product);
-// → 
 // [
 //     { name: 'Size', values: ['Small'] },
 //     { name: 'Color', values: ['White', 'Red', 'Green'] }
