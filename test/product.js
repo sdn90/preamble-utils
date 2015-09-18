@@ -65,14 +65,6 @@ describe('Find Variant', () => {
       findVariant(product, { option1: 'Black', option2: 'Large' })
     ).toBe(product.variants[0]);
   });
-
-  it('should throw an error if the wrong number of options are given', () => {
-    expect(() => {
-      findVariant(product, {
-        option1: 'Black', option2: 'Large', option3: 'Medium'
-      })
-    }).toThrow('Wrong number of options given');
-  });
 })
 
 describe('Format Money', () => {

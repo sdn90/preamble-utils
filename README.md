@@ -1,32 +1,21 @@
-Preamble.js
+Preamble Utils
 ============================
-[![Build Status](https://travis-ci.org/sdn90/preamblejs.svg?branch=master)](https://travis-ci.org/sdn90/preamblejs)
+[![Build Status](https://travis-ci.org/sdn90/preamble-utils.svg?branch=master)](https://travis-ci.org/sdn90/preamble-utils)
 
-A JavaScript library for Shopify themes. 
+A JavaScript utility library for Shopify themes.
 
 Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but is theme agnostic. The library solves common problems seen in all themes.
 
 ## Installation
-`npm install preamblejs --save`
-
-## What's Included
-
-### Product Helpers
-Utilities for manipulating JSON outputted from `{{ product | json }}`.
-
-### AJAX API
-A Promise based Shopify AJAX API client. Includes all [officially supported endpoints](https://docs.shopify.com/support/your-website/themes/can-i-use-ajax-api).
+`npm install preamble-utils --save`
 
 ## Usage
-
-### Products
-
 
 #### findVariant(product, options)
 Returns a variant with the given options
 
 ```javascript
-import findVariant from 'preamblejs';
+import { findVariant } from 'preamble-utils';
 
 // JSON returned from {{ product | json }}
 let product = {
@@ -47,7 +36,7 @@ findVariant(product, options);
 
 #### formatMoney(money)
 ```javascript
-import formatMoney from 'preamblejs/product/formatMoney';
+import { formatMoney } from 'preamble-utils';
 
 let money = '1499';
 
@@ -55,22 +44,22 @@ formatMoney(money);
 // → '$14.99'
 ```
 
-#### imageUrl(url)
+#### imageSize(url)
 ```javascript
-import imageUrl from 'preamblejs/product/imageUrl';
+import { imageSize } from 'preamble-utils';
 
 let image = 'https://shopifycdnurl.com/ImageFile.jpg'
 
-imageUrl(image, 'thumbnail');
+imageSize(image, 'thumbnail');
 // → 'https://shopifycdnurl.com/ImageFile-thumbnail.jpg'
 
-imageUrl(image, 'grande');
+imageSize(image, 'grande');
 // → 'https://shopifycdnurl.com/ImageFile-grande.jpg'
 ```
 
 #### uniqueOptions(product)
 ```javascript
-import uniqueOptions from 'preamblejs/product/uniqueOptions';
+import { uniqueOptions } from 'preamble-utils';
 
 let product = {
 	...
@@ -89,39 +78,3 @@ uniqueOptions(product);
 //     { name: 'Color', values: ['White', 'Red', 'Green'] }
 // ]
 ```
-
-### AJAX API
-All functions return a promise
-
-#### getProduct(handle)
-```javascript
-import getProduct from 'preamblejs/cart';
-
-getProduct('white-tshirt').then(res => {
-
-	// Loading state. Do stuff such as showing a
-	// loading spinner here.
-	
-	return res.json();
-	
-}).then(json => {
-
-	// Do stuff with response	
-	
-}).catch(error => {
-	
-	// Handle errors here
-	
-})
-```
-
-#### addCart(options)
-
-#### getCart()
-
-#### updateCart(options)
-
-#### clearCart()
-
-#### getShipping(options)
-

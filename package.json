@@ -1,7 +1,7 @@
 {
-  "name": "preamble.js",
+  "name": "preamble-utils",
   "version": "0.0.1",
-  "description": "Javascript library for Preamble theme framework",
+  "description": "Javascript utility library for Shopify themes",
   "main": "lib/index.js",
   "directories": {
     "test": "test"
@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sdn90/preamblejs"
+    "url": "https://github.com/sdn90/preamble-utils"
   },
   "author": "Steven Nguyen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sdn90/preamblejs/issues"
+    "url": "https://github.com/sdn90/preamble-utils/issues"
   },
-  "homepage": "https://github.com/sdn90/premablejs",
+  "homepage": "https://github.com/sdn90/preamble-utils",
   "devDependencies": {
     "babel": "^5.8.21",
     "babel-core": "^5.8.22",
@@ -40,19 +40,6 @@
     "webpack": "^1.12.0"
   },
   "dependencies": {
-    "es6-promise": "^3.0.2",
     "lodash": "^3.10.1",
-    "route-recognizer": "^0.1.9",
-    "whatwg-fetch": "^0.9.0"
   },
-  "npmName": "preamble.js",
-  "npmFileMap": [
-    {
-      "basePath": "dist",
-      "files": [
-        "*.js",
-        ".jsx"
-      ]
-    }
-  ]
 }
