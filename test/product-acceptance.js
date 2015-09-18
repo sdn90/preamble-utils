@@ -1,6 +1,6 @@
 import expect from 'expect';
 import uniqueOptions from '../src/product/uniqueOptions';
-import imageUrl from '../src/product/imageUrl';
+import imageSize from '../src/product/imageSize';
 import findVariant from '../src/product/findVariant';
 import formatMoney from '../src/product/formatMoney';
 
@@ -52,9 +52,9 @@ describe('Unique options', () => {
 
 });
 
-describe('Image URL', () => {
+describe('Image Size', () => {
   it('should append string to filename', () => {
-    expect(imageUrl(product.images[0], 'grande'))
+    expect(imageSize(product.images[0], 'grande'))
       .toBe('//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image_grande.jpeg?v=1424572403');
   });
 });
