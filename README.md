@@ -11,6 +11,11 @@ Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but i
 
 ## Usage
 
+1. [findVariant](#findVariantproductoptions)
+2. [formatMoney](#formatMoneymoney)
+3. [imageSize](#imageSizeurl-size)
+4. [uniqueOptions](#uniqueOptionsproduct)
+
 #### findVariant(product, options)
 Find a product variant with the given options.
 
