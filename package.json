@@ -1,6 +1,6 @@
 {
   "name": "preamble-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Javascript utility library for Shopify themes",
   "main": "lib/index.js",
   "directories": {
