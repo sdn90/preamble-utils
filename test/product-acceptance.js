@@ -3,6 +3,7 @@ import uniqueOptions from '../src/product/unique-options';
 import imageSize from '../src/product/image-size';
 import findVariant from '../src/product/find-variant';
 import formatMoney from '../src/product/format-money';
+import firstVariant from '../src/product/first-available-variant';
 
 let product = {
   "variants": [{
@@ -13,6 +14,7 @@ let product = {
     "option2": "Large",
     "option3": null,
     "price": 1799,
+    "available": false
   }, {
     "id": 1091557365,
     "title": "Dark Pink",
@@ -21,6 +23,7 @@ let product = {
     "option2": "Large",
     "option3": null,
     "price": 1799,
+    "available": true
   }, {
     "id": 1091557369,
     "title": "Blue",
@@ -28,7 +31,8 @@ let product = {
     "option1": "Blue",
     "option2": null,
     "option3": null,
-    "price": 2300
+    "price": 2300,
+    "available": true
   }, {
     "id": 1091557373,
     "title": "Red Plum",
@@ -36,7 +40,8 @@ let product = {
     "option1": "Red Plum",
     "option2": null,
     "option3": null,
-    "price": 3400
+    "price": 3400,
+    "available": false
   }],
   "images": [ "//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image.jpeg?v=1424572403"],
   "options": ["Color", "Size"],
@@ -70,5 +75,13 @@ describe('Find Variant', () => {
 describe('Format Money', () => {
   it('should format money', () => {
     expect(formatMoney(1399)).toEqual('$13.99')
+  })
+})
+
+describe('First available variant', () => {
+  it('return the first available variant', () => {
+    expect(
+      firstVariant(product)
+    ).toBe(product.variants[1])
   })
 })
