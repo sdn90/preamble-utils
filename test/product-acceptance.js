@@ -1,8 +1,8 @@
 import expect from 'expect';
-import uniqueOptions from '../src/product/uniqueOptions';
-import imageSize from '../src/product/imageSize';
-import findVariant from '../src/product/findVariant';
-import formatMoney from '../src/product/formatMoney';
+import uniqueOptions from '../src/product/unique-options';
+import imageSize from '../src/product/image-size';
+import findVariant from '../src/product/find-variant';
+import formatMoney from '../src/product/format-money';
 
 let product = {
   "variants": [{

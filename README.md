@@ -7,8 +7,6 @@ A JavaScript utility library for Shopify themes.
 
 Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but is theme agnostic. The library solves common problems seen in all themes.
 
-**Note:** Within the next few releases, the goal is to have a modular structure similar to Lodash. Most likely the functions will have a different import path but will have the same functionality.
-
 ## Installation
 `npm install preamble-utils --save`
 
