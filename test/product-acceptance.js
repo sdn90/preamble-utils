@@ -45,7 +45,7 @@ let product = {
   }],
   "images": [ "//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image.jpeg?v=1424572403"],
   "options": ["Color", "Size"],
-}
+};
 
 describe('Unique options', () => {
   it('should return an array of values of each option', () => {
@@ -70,18 +70,20 @@ describe('Find Variant', () => {
       findVariant(product, { option1: 'Black', option2: 'Large' })
     ).toBe(product.variants[0]);
   });
-})
+});
 
 describe('Format Money', () => {
   it('should format money', () => {
-    expect(formatMoney(1399)).toEqual('$13.99')
-  })
-})
+    expect(formatMoney(1)).toEqual('$0.01');
+    expect(formatMoney(1399)).toEqual('$13.99');
+    expect(formatMoney(10000)).toEqual('$100.00');
+  });
+});
 
 describe('First available variant', () => {
   it('return the first available variant', () => {
     expect(
       firstVariant(product)
-    ).toBe(product.variants[1])
-  })
-})
+    ).toBe(product.variants[1]);
+  });
+});

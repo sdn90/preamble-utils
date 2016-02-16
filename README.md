@@ -70,7 +70,7 @@ Gets the specified image size.
 
 ##### Arguments
 1. `url` *(String)*: The master/original image URL
-2. `size` *(String)*: The desired size
+2. `size` *(String)*: The desired size. See [Shopify Docs](https://docs.shopify.com/themes/liquid-documentation/filters/url-filters#size-parameters) for possible sizes.
 
 ##### Returns
 *(String)*: URL of specified image size
