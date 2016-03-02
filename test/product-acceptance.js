@@ -49,7 +49,7 @@ let product = {
 
 describe('Unique options', () => {
   it('should return an array of values of each option', () => {
-    expect(uniqueOptions(product)).toEqual([
+    expect(uniqueOptions(product.variants, product.options)).toEqual([
       { name: 'Color', values: ['Black', 'Dark Pink', 'Blue', 'Red Plum']},
       { name: 'Size', values: ['Large'] }
     ]);
@@ -67,8 +67,14 @@ describe('Image Size', () => {
 describe('Find Variant', () => {
   it('should return a variant', () => {
     expect(
-      findVariant(product, { option1: 'Black', option2: 'Large' })
+      findVariant(product.variants, product.options, { option1: 'Black', option2: 'Large' })
     ).toBe(product.variants[0]);
+  });
+
+  it('should return undefined if all options are not given', () => {
+    expect(
+      findVariant(product.variants, product.options, { option1: 'Black' })
+    ).toBe(undefined);
   });
 });
 
@@ -83,7 +89,7 @@ describe('Format Money', () => {
 describe('First available variant', () => {
   it('return the first available variant', () => {
     expect(
-      firstVariant(product)
+      firstVariant(product.variants)
     ).toBe(product.variants[1]);
   });
 });

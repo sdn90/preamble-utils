@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     libraryTarget: "umd",
-    library: "Preamble"
+    library: "PreambleUtils"
   },
   resolve: {
     extensions: ['', '.js']

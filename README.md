@@ -8,6 +8,9 @@ A JavaScript utility library for Shopify themes.
 Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but is theme agnostic. The library solves common problems seen in all themes.
 
 ## Installation
+See `dist/` directory.
+
+## Installation with module bundler
 `npm install preamble-utils --save`
 
 ## Usage
@@ -17,14 +20,15 @@ Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but i
 3. [imageSize](#imagesizeurl-size)
 4. [uniqueOptions](#uniqueoptionsproduct)
 
-#### findVariant(product, options)
+#### findVariant(productVariants, productOptions, userOptions)
 Find a product variant with the given options.
 
-If the number of options given is not equal to the number there are, nothing is returned.
+If the number of options given is not equal to the number the product has
 
 ##### Arguments
-1. `product` *(Object)*: Object returned from `{{ product | json }}`.
-2. `options` *(Object)*: The options of the variant you want to find. Keys should be named `option1`, `option2`, and `option3`.
+1. `productVariants` *(Object)*: See [object shapes](#object-shapes)
+2. `productOptions` *(Object)*: See [object shapes](#object-shapes)
+3. `userOptions` *(Object)*: The options of the variant you want to find. Keys should be named `option1`, `option2`, and `option3`.
 
 ##### Returns
 *(Object)*: The variant object
@@ -45,7 +49,7 @@ let product = {
 	...
 }
 
-findVariant(product, { option1: 'Medium', option2: 'Red'});
+findVariant(product.variants, product.options, { option1: 'Medium', option2: 'Red'});
 // → { id: 2, option1: 'Medium', option2: 'Red' } 
 ```
 
@@ -88,10 +92,11 @@ imageSize(imageUrl, 'grande');
 // → 'https://shopifycdnurl.com/ImageFile-grande.jpg'
 ```
 
-#### uniqueOptions(product)
+#### uniqueOptions(productVariants, productOptions)
 
 ##### Arguments
-1. `product` *(Object)*: Object returned from `{{ product | json }}`
+1. `productVariants` *(Array)*: See [object shapes](#object-shapes)
+2. `productOptions` *(Array)*: See [object shapes](#object-shapes)
 
 ##### Returns
 *(Array)*: A collection of each option's unique values.
@@ -124,11 +129,45 @@ let product = {
 	...
 };
 
-uniqueOptions(product);
+uniqueOptions(product.variants, product.options);
 // [
 //     { name: 'Size', values: ['Small'] },
 //     { name: 'Color', values: ['White', 'Red', 'Green'] }
 // ]
+```
+## Object Shapes
+All arguments use the same shape of the JSON returned from `{{ product | json }}`.
+
+### Variants Shape
+```json
+[{
+  "id": 1234567,
+  "title": "Variant Title",
+  "options": [
+    "Blue", "Large"
+  ],
+  "option1": "Blue",
+  "option2": "Large",
+  "option3": null,
+  "price": 349,
+  "weight": 27,
+  "compare_at_price": 695,
+  "inventory_quantity": 45,
+  "inventory_management": "shopify",
+  "inventory_policy": "deny",
+  "available": true,
+  "sku": "VARIANT-SKU",
+  "requires_shipping": true,
+  "taxable": true,
+  "barcode": "",
+  "featured_image": null
+}]
+
+```
+
+### Options Shape
+```json
+["Color", "Size"]
 ```
 
 ## License

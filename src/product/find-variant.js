@@ -1,9 +1,11 @@
 import findWhere from 'lodash/collection/findWhere';
 
-export default function findVariant(product, options) {
-  let optionsLength = Object.keys(options).length;
+export default function findVariant(productVariants, productOptions, userOptions) {
+  let optionsLength = Object.keys(userOptions).length;
 
-  if (product.options.length === optionsLength) {
-    return findWhere(product.variants, options);
+  if (productOptions.length === optionsLength) {
+    return findWhere(productVariants, userOptions);
+  } else {
+    return undefined;
   }
 }
