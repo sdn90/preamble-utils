@@ -1,13 +1,26 @@
-import compact from 'lodash/array/compact';
-import pluck from 'lodash/collection/pluck';
-import uniq from 'lodash/array/uniq';
-
+/**
+ * [uniqueOptions description]
+ * @param  {[type]} productVariants [description]
+ * @param  {[type]} productOptions  [description]
+ * @return {[type]}                 [description]
+ */
 export default function uniqueOptions(productVariants, productOptions) {
   return productOptions.map((option, index) => {
-    let values = pluck(productVariants, 'option' + (index + 1));
+    const currentOptionNumber = (index + 1);
+    const optionKey = `option${currentOptionNumber}`;
+
+    // return the values
+    const values =
+      productVariants
+        .map(variant => variant[optionKey])
+        .filter(value => value !== null)
+        .reduce((prev, current) => {
+          return prev.indexOf(current) < 0 ? prev.concat(current) : prev;
+        }, []);
+
     return {
       name: option,
-      values: uniq(compact(values))
+      values
     };
   });
 }

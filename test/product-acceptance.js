@@ -80,9 +80,9 @@ describe('Find Variant', () => {
 
 describe('Format Money', () => {
   it('should format money', () => {
-    expect(formatMoney(1)).toEqual('$0.01');
-    expect(formatMoney(1399)).toEqual('$13.99');
-    expect(formatMoney(10000)).toEqual('$100.00');
+    expect(formatMoney(1, '$')).toEqual('$0.01');
+    expect(formatMoney(1399, '$')).toEqual('$13.99');
+    expect(formatMoney(10000, '$')).toEqual('$100.00');
   });
 });
 
