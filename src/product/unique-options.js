@@ -1,26 +1,26 @@
 /**
- * [uniqueOptions description]
- * @param  {[type]} productVariants [description]
- * @param  {[type]} productOptions  [description]
- * @return {[type]}                 [description]
+ * Returns the unique option values
+ * @param  {Object[]} productVariants
+ * @param  {Object[]} productOptions
+ * @return {Object[]}
  */
-export default function uniqueOptions(productVariants, productOptions) {
+function uniqueOptions(productVariants, productOptions) {
   return productOptions.map((option, index) => {
     const currentOptionNumber = (index + 1);
     const optionKey = `option${currentOptionNumber}`;
 
-    // return the values
+    // get the option's values
     const values =
       productVariants
         .map(variant => variant[optionKey])
         .filter(value => value !== null)
+        // eslint-disable-next-line
         .reduce((prev, current) => {
           return prev.indexOf(current) < 0 ? prev.concat(current) : prev;
         }, []);
 
-    return {
-      name: option,
-      values
-    };
+    return { name: option, values };
   });
 }
+
+export default uniqueOptions;
