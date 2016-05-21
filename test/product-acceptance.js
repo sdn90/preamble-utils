@@ -1,7 +1,7 @@
 import expect from 'expect';
 import uniqueOptions from '../src/product/unique-options';
 import imageSize from '../src/product/image-size';
-import findVariant from '../src/product/find-variant';
+import findVariantFromOptions from '../src/product/find-variant-from-options';
 import formatMoney from '../src/product/format-money';
 import firstVariant from '../src/product/first-available-variant';
 
@@ -64,17 +64,11 @@ describe('Image Size', () => {
   });
 });
 
-describe('Find Variant', () => {
+describe('Find Variant from Options', () => {
   it('should return a variant', () => {
     expect(
-      findVariant(product.variants, product.options, { option1: 'Black', option2: 'Large' })
+      findVariantFromOptions(product.variants, { option1: 'Black', option2: 'Large' })
     ).toBe(product.variants[0]);
-  });
-
-  it('should return undefined if all options are not given', () => {
-    expect(
-      findVariant(product.variants, product.options, { option1: 'Black' })
-    ).toBe(undefined);
   });
 });
 
