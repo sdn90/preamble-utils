@@ -10,7 +10,14 @@ import _find from 'lodash/find';
  * @return {Object}
  */
 function findVariantFromOptions(productVariants, userOptions) {
-  return _find(productVariants, userOptions);
+  // default to null if not included
+  const optionsToFind = {
+    option1: userOptions.option1 || null,
+    option2: userOptions.option2 || null,
+    option3: userOptions.option3 || null
+  };
+
+  return _find(productVariants, optionsToFind);
 }
 
 export default findVariantFromOptions;

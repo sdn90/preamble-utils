@@ -47,11 +47,40 @@ let product = {
   "options": ["Color", "Size"],
 };
 
+const product2 = {
+  "id": 1,
+  "title": "Test Product",
+  "variants": [{
+    "id": 1,
+    "title": "Blue Small",
+    "options": ["Color", "Size"],
+    "option1": "Blue",
+    "option2": "Small",
+    "option3": null,
+    "available": true
+  },{
+    "id": 2,
+    "title": "Blue Medium",
+    "options": ["Color", "Size"],
+    "option1": "Blue",
+    "option2": "Medium",
+    "option3": null,
+    "available": true
+  }],
+  "options": ["Color", "Size"]
+};
+
+
 describe('Unique options', () => {
   it('should return an array of values of each option', () => {
     expect(uniqueOptions(product.variants, product.options)).toEqual([
       { name: 'Color', values: ['Black', 'Dark Pink', 'Blue', 'Red Plum']},
       { name: 'Size', values: ['Large'] }
+    ]);
+
+    expect(uniqueOptions(product2.variants, product2.options)).toEqual([
+      { name: 'Color', values: ['Blue'] },
+      { name: 'Size', values: ['Small', 'Medium'] }
     ]);
   });
 
@@ -62,6 +91,12 @@ describe('Image Size', () => {
     expect(imageSize(product.images[0], 'grande'))
       .toBe('//cdn.shopify.com/s/files/1/0778/8307/products/dummy_image_grande.jpeg?v=1424572403');
   });
+
+  it('should throw an error if an invalid image size is given', () => {
+    expect(
+      () => imageSize(product.images[0], 'wrongsize')
+    ).toThrow('Invalid image size');
+  });
 });
 
 describe('Find Variant from Options', () => {
@@ -69,6 +104,24 @@ describe('Find Variant from Options', () => {
     expect(
       findVariantFromOptions(product.variants, { option1: 'Black', option2: 'Large' })
     ).toBe(product.variants[0]);
+  });
+
+  it('should default an option value to null if not included', () => {
+    const variants = [
+      { option1: 'Black', option2: 'Large', option3: '3' },
+      { option1: 'Black', option2: 'Large', option3: null }
+    ];
+    const foundVariant = findVariantFromOptions(variants, { option1: 'Black', option2: 'Large' });
+    expect(foundVariant).toBe(variants[1]);
+  });
+
+  it('should return undefined if none are found', () => {
+    const variants = [
+      { option1: 'Black', option2: 'Large', option3: '3' },
+      { option1: 'Black', option2: 'Large', option3: null }
+    ];
+    const foundVariant = findVariantFromOptions(variants, { option1: 'Green', option2: 'Black' });
+    expect(foundVariant).toBe(undefined);
   });
 });
 
@@ -85,5 +138,12 @@ describe('First available variant', () => {
     expect(
       firstVariant(product.variants)
     ).toBe(product.variants[1]);
+  });
+
+  it('should return undefined if none are found', () => {
+    const variants = [{ available: false }];
+    expect(
+      firstVariant(variants)
+    ).toBe(undefined);
   });
 });

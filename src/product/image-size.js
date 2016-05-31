@@ -17,7 +17,7 @@ function validateSize(size) {
     'original',
     '1024x1024',
     '2048x2048',
-    'master'
+    'master',
   ];
   return validSizes.indexOf(size) !== -1;
 }
@@ -33,7 +33,9 @@ function imageSize(url, size) {
 
   const re = /\/products\/(.*)\.(.*)/;
 
-  return url.replace(re, (match, p1, p2) => `/products/${p1}_${size}.${p2}`);
+  return url.replace(re, (match, p1, p2) => {
+    return `/products/${p1}_${size}.${p2}`;
+  });
 }
 
 export default imageSize;

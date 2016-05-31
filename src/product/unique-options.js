@@ -1,7 +1,7 @@
 /**
  * Returns the unique option values
  * @param  {Object[]} productVariants
- * @param  {Object[]} productOptions
+ * @param  {array} productOptions
  * @return {Object[]}
  */
 function uniqueOptions(productVariants, productOptions) {
