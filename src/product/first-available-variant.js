@@ -1,5 +1,5 @@
-import _findWhere from 'lodash/collection/findWhere';
+import _find from 'lodash/find';
 
 export default function firstVariant(variants) {
-  return _findWhere(variants, { 'available': true });
+  return _find(variants, { available: true });
 }

@@ -8,7 +8,7 @@ A JavaScript utility library for Shopify themes.
 Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but is theme agnostic. The library solves common problems seen in all themes.
 
 ## Installation
-See `dist/` directory.
+See `dist/` directory. Library is available as `PreambleUtils`.
 
 ## Installation with module bundler
 `npm install preamble-utils --save`

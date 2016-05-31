@@ -2,9 +2,15 @@ var webpack = require('webpack');
 
 module.exports = {
   module: {
-    loaders: [
-      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: /node_modules/,
+      query: {
+        presets: ['es2015', 'stage-1'],
+        "ignore": ["node_modules/"]
+      }
+    }]
   },
   output: {
     libraryTarget: "umd",
