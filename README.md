@@ -5,190 +5,117 @@ Preamble Utils
 
 A JavaScript utility library for Shopify themes.
 
-Created for usage with [Preamble theme](https://github.com/sdn90/preamble) but is theme agnostic. The library solves common problems seen in all themes.
-
 ## Installation
-See `dist/` directory. Library is available as `PreambleUtils`.
 
-## Installation with module bundler
+### Webpack, Browserify, etc.
 `npm install preamble-utils --save`
 
-## Usage
+```javascript
+// commonjs
+var Preamble = require('preamble-utils').findVariantFromOptions;
 
-1. [findVariant](#findvariantproductoptions)
-2. [formatMoney](#formatmoneymoney)
-3. [imageSize](#imagesizeurl-size)
-4. [uniqueOptions](#uniqueoptionsproduct)
+// es6 modules
+import { findVariantFromOptions } from 'preamble-utils';
+```
 
-#### findVariant(productVariants, productOptions, userOptions)
-Find a product variant with the given options.
+### CDN
+**Unminified**  
+[https://npmcdn.com/preamble-utils/dist/preamble-utils.js]()
 
-If the number of options given is not equal to the number the product has
+**Minified**  
+[https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js]()
 
-##### Arguments
-1. `productVariants` *(Object)*: See [object shapes](#object-shapes)
-2. `productOptions` *(Object)*: See [object shapes](#object-shapes)
-3. `userOptions` *(Object)*: The options of the variant you want to find. Keys should be named `option1`, `option2`, and `option3`.
 
-##### Returns
-*(Object)*: The variant object
-
-##### Example
+## API
+Arguments expect the format of the output of `{{ product | json }}`
 
 ```javascript
-import { findVariant } from 'preamble-utils';
-
-// JSON returned from {{ product | json }}
-let product = {
-	...
-	variants: [
-		{ id: 1, option1: 'Small', option2: 'Green', option3: null },
-		{ id: 2, option1: 'Medium', option2: 'Red', option3: null },
-		{ id: 3, option1: 'Large', option2: 'Grey', option3: null }
-	]
-	...
+{
+  title: 'Product Title',
+  variants: [{
+    option1: 'Blue',
+    option2: 'Small',
+    option3: null,
+    available: true,
+    price: 1399
+  }],
+  options: ['Color', 'Size']
 }
-
-findVariant(product.variants, product.options, { option1: 'Medium', option2: 'Red'});
-// → { id: 2, option1: 'Medium', option2: 'Red' } 
 ```
 
-#### formatMoney(money)
-Adds a decimal to money.
+##### findVariantFromOptions(variants: object[], options: object): object | undefined
+Find a variant with the given options.
 
-##### Arguments
-1. `money` *(String)*
+Any option that is not included is considered null.
 
-##### Returns
-*(String)*
+`const options = { option1: 'White' }` is the same as:
+
+`const options = { option1: 'White', option2: null, option3: null }`
+
+Returns `undefined` if none are found.
 
 ```javascript
-import { formatMoney } from 'preamble-utils';
+const variants = [
+    { title: 'Blue / Small', option1: 'Blue', option2: 'Small', option3: null },
+    { title: 'Green / Small', option1: 'Green', option2: 'Small', option3: null },
+];
 
-formatMoney('1499');
-// → '$14.99'
+findVariantFromOptions(variants, {
+  option1: 'Green',
+  option2: 'Small'
+});
+// { title: 'Green / Small', option1: 'Green', option2: 'Small', option3: null }
 ```
 
-#### imageSize(url, size)
-Gets the specified image size.
+##### firstAvailableVariant(variants: object[]): object | undefined
+Get the first available variant. Returns `undefined` if none are available.
 
-##### Arguments
-1. `url` *(String)*: The master/original image URL
-2. `size` *(String)*: The desired size. See [Shopify Docs](https://docs.shopify.com/themes/liquid-documentation/filters/url-filters#size-parameters) for possible sizes.
-
-##### Returns
-*(String)*: URL of specified image size
-
-##### Example
 ```javascript
-import { imageSize } from 'preamble-utils';
+const variants = [
+    { title: 'Blue / Small', available: false },
+    { title: 'Green / Small', available: true }
+];
 
-let imageUrl = 'https://shopifycdnurl.com/ImageFile.jpg'
-
-imageSize(imageUrl, 'thumbnail');
-// → 'https://shopifycdnurl.com/ImageFile-thumbnail.jpg'
-
-imageSize(imageUrl, 'grande');
-// → 'https://shopifycdnurl.com/ImageFile-grande.jpg'
+firstAvailableVariant(variants)
+// { title: 'Green / Small', available: true }
 ```
 
-#### uniqueOptions(productVariants, productOptions)
-
-##### Arguments
-1. `productVariants` *(Array)*: See [object shapes](#object-shapes)
-2. `productOptions` *(Array)*: See [object shapes](#object-shapes)
-
-##### Returns
-*(Array)*: A collection of each option's unique values.
+##### formatMoney(money: integer, prefix: string): string
+Simple money formatting. `prefix` defaults to `'$'`.
 
 ```javascript
-[{ 
-	name: 'Size',
-	values: ['Small', 'Large']
-},
-{ 
-	name: 'Color',
-	values: ['Green', 'Black']
-}]
+formatMoney(1399);
+// '$13.99'
+
+formatMoney(1399, '£');
+// '£13.99'
 ```
 
-##### Example
+##### imageSize(url: string, size: string): string
+Get the URL to an image size.
+
+`size` must be a valid image size. See [https://help.shopify.com/themes/liquid/filters/url-filters#size-parameters]() for possible values.
 
 ```javascript
-import { uniqueOptions } from 'preamble-utils';
+const url = 'https://cdn.shopify.com/s/files/1/0383/9765/products/10516_indigo_med_wash_l_z.jpeg?v=1401811137';
 
-// product returned from {{ product | json }}
-let product = {
-	...
-	options: ['Size', 'Color'],
-	variants: [
-		{ option1: 'Small', option2: 'White' },
-		{ option1: 'Small', option2: 'Red' },
-		{ option1: 'Small', option3: 'Green' }
-	]
-	...
-};
+imageSize(url, 'large');
+// http://cdn.shopify.com/s/files/1/0383/9765/products/10516_indigo_med_wash_l_z_large.jpeg?v=1401811137
+```
 
-uniqueOptions(product.variants, product.options);
+##### uniqueOptions(variants: object[], options: object[]): object[]
+Get the unique options and its values
+
+```javascript
+const variants = [
+    { title: 'Blue / Small', option1: 'Blue', option2: 'Small', option3: null },
+    { title: 'Green / Small', option1: 'Green', option2: 'Small', option3: null },
+];
+const options = ['Color', 'Size'];
+
+uniqueOptions(variants, options);
 // [
-//     { name: 'Size', values: ['Small'] },
-//     { name: 'Color', values: ['White', 'Red', 'Green'] }
+//   { name: 'Color', values: ['Blue', 'Green'] },
+//   { name: 'Size', values: ['Small'] }
 // ]
 ```
-## Object Shapes
-All arguments use the same shape of the JSON returned from `{{ product | json }}`.
-
-### Variants Shape
-```json
-[{
-  "id": 1234567,
-  "title": "Variant Title",
-  "options": [
-    "Blue", "Large"
-  ],
-  "option1": "Blue",
-  "option2": "Large",
-  "option3": null,
-  "price": 349,
-  "weight": 27,
-  "compare_at_price": 695,
-  "inventory_quantity": 45,
-  "inventory_management": "shopify",
-  "inventory_policy": "deny",
-  "available": true,
-  "sku": "VARIANT-SKU",
-  "requires_shipping": true,
-  "taxable": true,
-  "barcode": "",
-  "featured_image": null
-}]
-
-```
-
-### Options Shape
-```json
-["Color", "Size"]
-```
-
-## License
-The MIT License (MIT)
-
-Copyright (c) 2015 Steven Nguyen
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
