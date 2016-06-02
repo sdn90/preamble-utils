@@ -12,7 +12,7 @@ A JavaScript utility library for Shopify themes.
 
 ```javascript
 // commonjs
-var Preamble = require('preamble-utils').findVariantFromOptions;
+var Preamble = require('preamble-utils');
 
 // es6 modules
 import { findVariantFromOptions } from 'preamble-utils';
@@ -20,10 +20,10 @@ import { findVariantFromOptions } from 'preamble-utils';
 
 ### CDN
 **Unminified**  
-[https://npmcdn.com/preamble-utils/dist/preamble-utils.js]()
+[https://npmcdn.com/preamble-utils/dist/preamble-utils.js](https://npmcdn.com/preamble-utils/dist/preamble-utils.js)
 
 **Minified**  
-[https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js]()
+[https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js](https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js)
 
 
 ## API
