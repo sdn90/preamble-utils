@@ -20,10 +20,10 @@ import { findVariantFromOptions } from 'preamble-utils';
 
 ### CDN
 **Unminified**  
-[https://npmcdn.com/preamble-utils/dist/preamble-utils.js](https://npmcdn.com/preamble-utils/dist/preamble-utils.js)
+[https://unpkg.com/preamble-utils/dist/preamble-utils.js](https://unpkg.com/preamble-utils/dist/preamble-utils.js)
 
 **Minified**  
-[https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js](https://npmcdn.com/preamble-utils/dist/preamble-utils.min.js)
+[https://unpkg.com/preamble-utils/dist/preamble-utils.min.js](https://unpkg.com/preamble-utils/dist/preamble-utils.min.js)
 
 
 ## API
