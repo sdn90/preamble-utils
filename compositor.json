@@ -1,0 +1,143 @@
+{
+  "name": "sdn90/preamble-utils",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Default",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "-apple-system, BlinkMacSystemFont, sans-serif",
+    "fontWeight": 400,
+    "bold": 600,
+    "lineHeight": 1.5,
+    "typeScale": [
+      72,
+      48,
+      24,
+      20,
+      16,
+      14,
+      12
+    ],
+    "monospace": "Menlo, monospace",
+    "heading": {
+      "fontFamily": null,
+      "fontStyle": null,
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "textTransform": null,
+      "letterSpacing": null
+    },
+    "h0": {},
+    "h1": {},
+    "h2": {},
+    "h3": {},
+    "h4": {},
+    "h5": {},
+    "h6": {},
+    "alternativeText": {},
+    "space": [
+      0,
+      8,
+      16,
+      32,
+      48,
+      64,
+      96
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "centered": false
+    },
+    "colors": {
+      "text": "#111",
+      "background": "#fff",
+      "primary": "#08e",
+      "secondary": "#059",
+      "highlight": "#e08",
+      "border": "#ddd",
+      "muted": "#eee"
+    },
+    "border": {
+      "width": 1,
+      "radius": 2
+    },
+    "link": {},
+    "button": {
+      "hover": {
+        "boxShadow": "inset 0 0 0 999px rgba(0, 0, 0, .125)"
+      }
+    },
+    "input": {},
+    "body": {
+      "margin": 0
+    },
+    "breakpoints": {
+      "xs": "@media screen and (max-width:40em)",
+      "sm": "@media screen and (min-width:40em)",
+      "md": "@media screen and (min-width:52em)",
+      "lg": "@media screen and (min-width:64em)"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/sdn90/preamble-utils",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/preamble-utils",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "preamble-utils",
+      "subhead": "JavaScript utility library for Shopify themes.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "preamble-utils: JavaScript utility library for Shopify themes.",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "sdn90",
+          "repo": "preamble-utils"
+        }
+      ],
+      "text": "v3.0.1"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p><a href=\"https://travis-ci.org/sdn90/preamble-utils\"><img src=\"https://travis-ci.org/sdn90/preamble-utils.svg?branch=master\"></a></p>\n<p>A JavaScript utility library for Shopify themes.</p>\n<h2>Installation</h2>\n<h3>Webpack, Browserify, etc.</h3>\n<p><code>npm install preamble-utils --save</code></p>\n<pre><span class=\"hljs-comment\">// commonjs</span>\n<span class=\"hljs-keyword\">var</span> Preamble = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;preamble-utils&apos;</span>);\n\n<span class=\"hljs-comment\">// es6 modules</span>\n<span class=\"hljs-keyword\">import</span> { findVariantFromOptions } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">&apos;preamble-utils&apos;</span>;</pre><h3>CDN</h3>\n<p><strong>Unminified</strong><br><a href=\"https://unpkg.com/preamble-utils/dist/preamble-utils.js\">https://unpkg.com/preamble-utils/dist/preamble-utils.js</a></p>\n<p><strong>Minified</strong><br><a href=\"https://unpkg.com/preamble-utils/dist/preamble-utils.min.js\">https://unpkg.com/preamble-utils/dist/preamble-utils.min.js</a></p>\n<h2>API</h2>\n<p>Arguments expect the format of the output of <code>{{ product | json }}</code></p>\n<pre>{\n  <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Product Title&apos;</span>,\n  <span class=\"hljs-attr\">variants</span>: [{\n    <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Blue&apos;</span>,\n    <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>,\n    <span class=\"hljs-attr\">option3</span>: <span class=\"hljs-literal\">null</span>,\n    <span class=\"hljs-attr\">available</span>: <span class=\"hljs-literal\">true</span>,\n    <span class=\"hljs-attr\">price</span>: <span class=\"hljs-number\">1399</span>\n  }],\n  <span class=\"hljs-attr\">options</span>: [<span class=\"hljs-string\">&apos;Color&apos;</span>, <span class=\"hljs-string\">&apos;Size&apos;</span>]\n}</pre><h5>findVariantFromOptions(variants: object[], options: object): object | undefined</h5>\n<p>Find a variant with the given options.</p>\n<p>Any option that is not included is considered null.</p>\n<p><code>const options = { option1: &apos;White&apos; }</code> is the same as:</p>\n<p><code>const options = { option1: &apos;White&apos;, option2: null, option3: null }</code></p>\n<p>Returns <code>undefined</code> if none are found.</p>\n<pre><span class=\"hljs-keyword\">const</span> variants = [\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Blue / Small&apos;</span>, <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Blue&apos;</span>, <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>, <span class=\"hljs-attr\">option3</span>: <span class=\"hljs-literal\">null</span> },\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Green / Small&apos;</span>, <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Green&apos;</span>, <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>, <span class=\"hljs-attr\">option3</span>: <span class=\"hljs-literal\">null</span> },\n];\n\nfindVariantFromOptions(variants, {\n  <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Green&apos;</span>,\n  <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>\n});\n<span class=\"hljs-comment\">// { title: &apos;Green / Small&apos;, option1: &apos;Green&apos;, option2: &apos;Small&apos;, option3: null }</span></pre><h5>firstAvailableVariant(variants: object[]): object | undefined</h5>\n<p>Get the first available variant. Returns <code>undefined</code> if none are available.</p>\n<pre><span class=\"hljs-keyword\">const</span> variants = [\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Blue / Small&apos;</span>, <span class=\"hljs-attr\">available</span>: <span class=\"hljs-literal\">false</span> },\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Green / Small&apos;</span>, <span class=\"hljs-attr\">available</span>: <span class=\"hljs-literal\">true</span> }\n];\n\nfirstAvailableVariant(variants)\n<span class=\"hljs-comment\">// { title: &apos;Green / Small&apos;, available: true }</span></pre><h5>formatMoney(money: integer, prefix: string): string</h5>\n<p>Simple money formatting. <code>prefix</code> defaults to <code>&apos;$&apos;</code>.</p>\n<pre>formatMoney(<span class=\"hljs-number\">1399</span>);\n<span class=\"hljs-comment\">// &apos;$13.99&apos;</span>\n\nformatMoney(<span class=\"hljs-number\">1399</span>, <span class=\"hljs-string\">&apos;&#xA3;&apos;</span>);\n<span class=\"hljs-comment\">// &apos;&#xA3;13.99&apos;</span></pre><h5>imageSize(url: string, size: string): string</h5>\n<p>Get the URL to an image size.</p>\n<p><code>size</code> must be a valid image size. See <a href=\"\">https://help.shopify.com/themes/liquid/filters/url-filters#size-parameters</a> for possible values.</p>\n<pre><span class=\"hljs-keyword\">const</span> url = <span class=\"hljs-string\">&apos;https://cdn.shopify.com/s/files/1/0383/9765/products/10516_indigo_med_wash_l_z.jpeg?v=1401811137&apos;</span>;\n\nimageSize(url, <span class=\"hljs-string\">&apos;large&apos;</span>);\n<span class=\"hljs-comment\">// http://cdn.shopify.com/s/files/1/0383/9765/products/10516_indigo_med_wash_l_z_large.jpeg?v=1401811137</span></pre><h5>uniqueOptions(variants: object[], options: object[]): object[]</h5>\n<p>Get the unique options and its values</p>\n<pre><span class=\"hljs-keyword\">const</span> variants = [\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Blue / Small&apos;</span>, <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Blue&apos;</span>, <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>, <span class=\"hljs-attr\">option3</span>: <span class=\"hljs-literal\">null</span> },\n    { <span class=\"hljs-attr\">title</span>: <span class=\"hljs-string\">&apos;Green / Small&apos;</span>, <span class=\"hljs-attr\">option1</span>: <span class=\"hljs-string\">&apos;Green&apos;</span>, <span class=\"hljs-attr\">option2</span>: <span class=\"hljs-string\">&apos;Small&apos;</span>, <span class=\"hljs-attr\">option3</span>: <span class=\"hljs-literal\">null</span> },\n];\n<span class=\"hljs-keyword\">const</span> options = [<span class=\"hljs-string\">&apos;Color&apos;</span>, <span class=\"hljs-string\">&apos;Size&apos;</span>];\n\nuniqueOptions(variants, options);\n<span class=\"hljs-comment\">// [</span>\n<span class=\"hljs-comment\">//   { name: &apos;Color&apos;, values: [&apos;Blue&apos;, &apos;Green&apos;] },</span>\n<span class=\"hljs-comment\">//   { name: &apos;Size&apos;, values: [&apos;Small&apos;] }</span>\n<span class=\"hljs-comment\">// ]</span></pre>"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/sdn90/preamble-utils",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/sdn90",
+          "text": "sdn90"
+        }
+      ]
+    }
+  ]
+}
