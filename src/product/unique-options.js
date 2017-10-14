@@ -21,7 +21,7 @@ function uniqueOptions(productVariants, productOptions) {
         return prev.indexOf(current) < 0 ? prev.concat(current) : prev;
       }, []);
 
-    return { name: option, values };
+    return { name: option, values: values };
   });
 }
 
