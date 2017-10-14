@@ -5,3 +5,4 @@ lib
 dist
 coverage
 .tern-port
+.nyc_output

@@ -1,5 +1,7 @@
-export findVariantFromOptions from './product/find-variant-from-options';
-export formatMoney from './product/format-money';
-export imageSize from './product/image-size';
-export uniqueOptions from './product/unique-options';
-export firstAvailableVariant from './product/first-available-variant';
+module.exports = {
+  findVariantFromOptions: "./product/find-variant-from-options",
+  formatMoney: "./product/format-money",
+  imageSize: "./product/image-size",
+  uniqueOptions: "./product/unique-options",
+  firstAvailableVariant: "./product/first-available-variant"
+};

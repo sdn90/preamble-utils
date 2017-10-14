@@ -5,7 +5,11 @@
  * @param  {string} prefix
  * @return {string}
  */
-export default function formatMoney(money, prefix = '$') {
-  const moneyWithDecimals = (money / 100).toFixed(2);
-  return prefix + moneyWithDecimals;
+function formatMoney(money, prefix) {
+  var defaultedPrefix = prefix || "$";
+
+  var moneyWithDecimals = (money / 100).toFixed(2);
+  return defaultedPrefix + moneyWithDecimals;
 }
+
+module.exports = formatMoney;

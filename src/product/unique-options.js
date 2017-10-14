@@ -5,22 +5,24 @@
  * @return {Object[]}
  */
 function uniqueOptions(productVariants, productOptions) {
-  return productOptions.map((option, index) => {
-    const currentOptionNumber = (index + 1);
-    const optionKey = `option${currentOptionNumber}`;
+  return productOptions.map(function(option, index) {
+    var currentOptionNumber = index + 1;
+    var optionKey = "option" + currentOptionNumber;
 
     // get the option's values
-    const values =
-      productVariants
-        .map(variant => variant[optionKey])
-        .filter(value => value !== null)
-        // eslint-disable-next-line
-        .reduce((prev, current) => {
-          return prev.indexOf(current) < 0 ? prev.concat(current) : prev;
-        }, []);
+    var values = productVariants
+      .map(function(variant) {
+        return variant[optionKey];
+      })
+      .filter(function(value) {
+        return value !== null;
+      })
+      .reduce(function(prev, current) {
+        return prev.indexOf(current) < 0 ? prev.concat(current) : prev;
+      }, []);
 
     return { name: option, values };
   });
 }
 
-export default uniqueOptions;
+module.exports = uniqueOptions;

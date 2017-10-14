@@ -1,5 +1,11 @@
-import _find from 'lodash/find';
+function firstAvailableVariant(variants) {
+  for (var i = 0; i < variants.length; i++) {
+    if (variants[i].available) {
+      return variants[i];
+    }
+  }
 
-export default function firstVariant(variants) {
-  return _find(variants, { available: true });
+  return undefined;
 }
+
+module.exports = firstAvailableVariant;
