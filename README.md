@@ -94,8 +94,6 @@ formatMoney(1399, '£');
 ##### imageSize(url: string, size: string): string
 Get the URL to an image size.
 
-`size` must be a valid image size. See [https://help.shopify.com/themes/liquid/filters/url-filters#size-parameters]() for possible values.
-
 ```javascript
 const url = 'https://cdn.shopify.com/s/files/1/0383/9765/products/10516_indigo_med_wash_l_z.jpeg?v=1401811137';
 
