@@ -1,7 +1,7 @@
 module.exports = {
-  findVariantFromOptions: "./product/find-variant-from-options",
-  formatMoney: "./product/format-money",
-  imageSize: "./product/image-size",
-  uniqueOptions: "./product/unique-options",
-  firstAvailableVariant: "./product/first-available-variant"
+  findVariantFromOptions: require("./product/find-variant-from-options"),
+  formatMoney: require("./product/format-money"),
+  imageSize: require("./product/image-size"),
+  uniqueOptions: require("./product/unique-options"),
+  firstAvailableVariant: require("./product/first-available-variant")
 };
