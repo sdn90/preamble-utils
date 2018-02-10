@@ -1,11 +1,20 @@
+//@ts-check
+/**
+ * @typedef Variant
+ * @property {number} id
+ * @property {string} option1
+ * @property {string} option2
+ * @property {string} option3
+ */
+
 /**
  * Find the variant with the given options
- * @param  {Object[]} productVariants
+ * @param  {Variant[]} productVariants
  * @param  {Object}   userOptions
  * @param  {string}   userOptions.option1
  * @param  {string}   userOptions.option2
  * @param  {string}   userOptions.option3
- * @return {Object}
+ * @return {Variant}
  */
 function findVariantFromOptions(productVariants, userOptions) {
   // default to null if not included
@@ -16,7 +25,7 @@ function findVariantFromOptions(productVariants, userOptions) {
   };
 
   for (var i = 0; i < productVariants.length; i++) {
-    const isSameVariant =
+    var isSameVariant =
       productVariants[i].option1 === optionsToFind.option1 &&
       productVariants[i].option2 === optionsToFind.option2 &&
       productVariants[i].option3 === optionsToFind.option3;
